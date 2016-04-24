@@ -1,0 +1,47 @@
+server {
+        listen 80;
+        server_name localhost local.lab20.net;
+
+        root /home/vagrant/;
+        index index.php index.html;
+
+        # Important for VirtualBox
+        sendfile off;
+
+        location / {
+            expires -1;
+            try_files $uri $uri/ =404;
+            autoindex on;
+        }
+        location = /favicon.ico {
+            log_not_found off;
+            access_log off;
+        }
+        location = /robots.txt {
+            allow all;
+            log_not_found off;
+            access_log off;
+        }
+        location ~ ^/phpinfo(/.*)?$ {
+            expires -1;
+            try_files /www$1 @phpinfo;
+        }
+        location @phpinfo {
+            expires off;
+            fastcgi_pass   unix:/var/run/php5-fpm.sock;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root/www/info.php;
+            fastcgi_param SCRIPT_NAME       /phpInfo/info.php;
+            fastcgi_param REQUEST_URI       /phpInfo$1;
+        }
+
+        location ~* \.php {
+            include fastcgi_params;
+
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_cache off;
+            fastcgi_index index.php;
+        }
+    }
