@@ -45,7 +45,6 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "$HOME/"
   # config.vm.synced_folder "/home/gdelre/vagrant/vagrant-jessie/shared", "/home/vagrant"
-  config.vm.synced_folder ".", "/vagrant", disabled: true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -76,5 +75,5 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-  config.vm.provision "shell", path: "provision/provision.sh"
+  #config.vm.provision "shell", path: "provision/provision.sh"
 end
