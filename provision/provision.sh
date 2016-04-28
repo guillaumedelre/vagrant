@@ -3,6 +3,17 @@ echo "Provisioning virtual machine..."
 
 sudo -s
 
+#echo "Installing Nfs..."
+#  apt-get install nfs-kernel-server nfs-common -y > /dev/null
+#  echo "-> Export directories..."
+#  ln -s /usr/sbin/exportfs /usr/local/bin/exportfs
+#  cp -f /vagrant/provision/config/exports /etc/exports > /dev/null
+#  exportfs -a
+#  echo "-> Restart services..."
+#  service nfs-kernel-server restart
+#  service nfs-common restart
+#echo "-> done"
+
 ##################################################
 
 echo "Installing Apache2..."
